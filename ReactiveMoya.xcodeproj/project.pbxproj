@@ -15,11 +15,11 @@
 		7C86B1EE1B7783E700EA7CE3 /* ReactiveMoyaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86B1EB1B7783E700EA7CE3 /* ReactiveMoyaError.swift */; };
 		7C86B1FA1B77860700EA7CE3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86B1F81B77860700EA7CE3 /* Endpoint.swift */; };
 		7C86B1FB1B77860700EA7CE3 /* Moya.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86B1F91B77860700EA7CE3 /* Moya.swift */; };
-		7C86B1FD1B77861100EA7CE3 /* MoyaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86B1FC1B77861100EA7CE3 /* MoyaResponse.swift */; };
 		7C86B2021B7787B400EA7CE3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C86B1FE1B7787B400EA7CE3 /* Alamofire.framework */; };
 		7C86B2031B7787B400EA7CE3 /* Box.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C86B1FF1B7787B400EA7CE3 /* Box.framework */; };
 		7C86B2041B7787B400EA7CE3 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C86B2001B7787B400EA7CE3 /* ReactiveCocoa.framework */; };
 		7C86B2051B7787B400EA7CE3 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C86B2011B7787B400EA7CE3 /* Result.framework */; };
+		7C86B2501B778C8400EA7CE3 /* MoyaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86B24F1B778C8400EA7CE3 /* MoyaResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,11 +44,11 @@
 		7C86B1EB1B7783E700EA7CE3 /* ReactiveMoyaError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveMoyaError.swift; sourceTree = "<group>"; };
 		7C86B1F81B77860700EA7CE3 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = External/Moya/Moya/Endpoint.swift; sourceTree = SOURCE_ROOT; };
 		7C86B1F91B77860700EA7CE3 /* Moya.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Moya.swift; path = External/Moya/Moya/Moya.swift; sourceTree = SOURCE_ROOT; };
-		7C86B1FC1B77861100EA7CE3 /* MoyaResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoyaResponse.swift; path = External/Moya/Moya/ReactiveCore/MoyaResponse.swift; sourceTree = SOURCE_ROOT; };
 		7C86B1FE1B7787B400EA7CE3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		7C86B1FF1B7787B400EA7CE3 /* Box.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Box.framework; path = Carthage/Build/iOS/Box.framework; sourceTree = "<group>"; };
 		7C86B2001B7787B400EA7CE3 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		7C86B2011B7787B400EA7CE3 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		7C86B24F1B778C8400EA7CE3 /* MoyaResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoyaResponse.swift; path = External/Moya/Moya/MoyaResponse.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +133,7 @@
 		7C86B1F61B7785D000EA7CE3 /* Moya */ = {
 			isa = PBXGroup;
 			children = (
-				7C86B1FC1B77861100EA7CE3 /* MoyaResponse.swift */,
+				7C86B24F1B778C8400EA7CE3 /* MoyaResponse.swift */,
 				7C86B1F81B77860700EA7CE3 /* Endpoint.swift */,
 				7C86B1F91B77860700EA7CE3 /* Moya.swift */,
 			);
@@ -263,9 +263,9 @@
 			files = (
 				7C86B1FA1B77860700EA7CE3 /* Endpoint.swift in Sources */,
 				7C86B1FB1B77860700EA7CE3 /* Moya.swift in Sources */,
-				7C86B1FD1B77861100EA7CE3 /* MoyaResponse.swift in Sources */,
 				7C86B1EC1B7783E700EA7CE3 /* Moya+ReactiveCocoa.swift in Sources */,
 				7C86B1ED1B7783E700EA7CE3 /* RACSignal+Moya.swift in Sources */,
+				7C86B2501B778C8400EA7CE3 /* MoyaResponse.swift in Sources */,
 				7C86B1EE1B7783E700EA7CE3 /* ReactiveMoyaError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

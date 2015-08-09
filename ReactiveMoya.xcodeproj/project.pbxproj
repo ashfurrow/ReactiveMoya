@@ -261,11 +261,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C86B1FB1B77860700EA7CE3 /* Moya.swift in Sources */,
-				7C86B1ED1B7783E700EA7CE3 /* RACSignal+Moya.swift in Sources */,
-				7C86B1EC1B7783E700EA7CE3 /* Moya+ReactiveCocoa.swift in Sources */,
 				7C86B1FA1B77860700EA7CE3 /* Endpoint.swift in Sources */,
+				7C86B1FB1B77860700EA7CE3 /* Moya.swift in Sources */,
 				7C86B1FD1B77861100EA7CE3 /* MoyaResponse.swift in Sources */,
+				7C86B1EC1B7783E700EA7CE3 /* Moya+ReactiveCocoa.swift in Sources */,
+				7C86B1ED1B7783E700EA7CE3 /* RACSignal+Moya.swift in Sources */,
 				7C86B1EE1B7783E700EA7CE3 /* ReactiveMoyaError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

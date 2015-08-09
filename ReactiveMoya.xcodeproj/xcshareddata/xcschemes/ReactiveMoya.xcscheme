@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7C86B1CC1B7781EE00EA7CE3"
-               BuildableName = "ReactiveMoya.framework"
+               BuildableName = "Moya.framework"
                BlueprintName = "ReactiveMoya"
                ReferencedContainer = "container:ReactiveMoya.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7C86B1CC1B7781EE00EA7CE3"
-            BuildableName = "ReactiveMoya.framework"
+            BuildableName = "Moya.framework"
             BlueprintName = "ReactiveMoya"
             ReferencedContainer = "container:ReactiveMoya.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7C86B1CC1B7781EE00EA7CE3"
-            BuildableName = "ReactiveMoya.framework"
+            BuildableName = "Moya.framework"
             BlueprintName = "ReactiveMoya"
             ReferencedContainer = "container:ReactiveMoya.xcodeproj">
          </BuildableReference>
@@ -94,7 +94,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7C86B1CC1B7781EE00EA7CE3"
-            BuildableName = "ReactiveMoya.framework"
+            BuildableName = "Moya.framework"
             BlueprintName = "ReactiveMoya"
             ReferencedContainer = "container:ReactiveMoya.xcodeproj">
          </BuildableReference>

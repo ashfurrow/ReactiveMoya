@@ -465,6 +465,7 @@
 				7C86B1E51B7781EE00EA7CE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7C86B1E61B7781EE00EA7CE3 /* Build configuration list for PBXNativeTarget "ReactiveMoyaTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +474,7 @@
 				7C86B1E81B7781EE00EA7CE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

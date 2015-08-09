@@ -1,0 +1,3 @@
+[submodule "External/Moya"]
+	path = External/Moya
+	url = https://github.com/justinmakaila/Moya.git

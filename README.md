@@ -1,7 +1,7 @@
 # ReactiveMoya
 A simpler way to use Moya+ReactiveCocoa.
 
-Example
+Usage
 ------------------------
 
 ReactiveMoya is the Moya you know, with the RAC interfaces you're used to. `ReactiveMoyaProvider` immediately returns a `SignalProducer` or `RACSignal` that you can subscribe to or bind or map or whatever you want to
@@ -62,3 +62,13 @@ provider.request(.UserProfile("ashfurrow"))
     })
   
 ```
+
+Running the Example
+------------------------
+To run the example:
+
+####Using Carthage
+
+Navigate to the root of the directory and run `carthage bootstrap`
+
+Open the Example project and build

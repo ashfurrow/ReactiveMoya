@@ -4,8 +4,7 @@ A simpler way to use Moya+ReactiveCocoa.
 Example
 ------------------------
 
-ReactiveMoya is the Moya you know, with the RAC interfaces you're used to. `ReactiveMoyaProvider` immediately returns a  
-`SignalProducer` or `RACSignal` that you can subscribe to or bind or map or whatever you want to
+ReactiveMoya is the Moya you know, with the RAC interfaces you're used to. `ReactiveMoyaProvider` immediately returns a `SignalProducer` or `RACSignal` that you can subscribe to or bind or map or whatever you want to
 do. To handle errors, for instance, we could do the following:
 
 ```swift

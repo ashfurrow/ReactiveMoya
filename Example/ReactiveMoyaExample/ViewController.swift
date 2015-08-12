@@ -9,6 +9,7 @@
 import UIKit
 import ReactiveCocoa
 import Result
+import Moya
 
 let ReactiveGithubProvider = ReactiveCocoaMoyaProvider<Github>()
 
@@ -25,7 +26,7 @@ class ReactiveMoyaViewController: UITableViewController, UIGestureRecognizerDele
     func downloadRepositories(username: String) {
         ReactiveGithubProvider.requestJSONArray(.UserRepositories(username))
             |> start(error: { (error: NSError) in
-                self.showErrorAlert("Github Fetch", error: error)
+                    self.showErrorAlert("Github Fetch", error: error)
                 },
                 next: { (result: NSArray) in
                     self.repos.put(result)
@@ -36,7 +37,7 @@ class ReactiveMoyaViewController: UITableViewController, UIGestureRecognizerDele
     func downloadZen() {
         ReactiveGithubProvider.requestString(.Zen)
             |> start(error: { (error: NSError) in
-                self.showErrorAlert("Zen", error: error)
+                    self.showErrorAlert("Zen", error: error)
                 },
                 next: { (string: String) in
                     self.showAlert("Zen", message: string)
@@ -46,13 +47,15 @@ class ReactiveMoyaViewController: UITableViewController, UIGestureRecognizerDele
     // MARK: - Actions
     // MARK: IBActions
     
-    @IBAction func searchPressed(sender: UIBarButtonItem) {
+    @IBAction
+    func searchPressed(sender: UIBarButtonItem) {
         showInputPrompt("Username", message: "Enter a github username", action: { username in
             self.downloadRepositories(username)
         })
     }
     
-    @IBAction func zenPressed(sender: UIBarButtonItem) {
+    @IBAction
+    func zenPressed(sender: UIBarButtonItem) {
         downloadZen()
     }
     

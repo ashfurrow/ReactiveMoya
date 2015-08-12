@@ -2,7 +2,7 @@ import Foundation
 import ReactiveCocoa
 import Result
 
-/// Subclass of MoyaProvider that returns RACSignal instances when requests are made. Much better than using completion closures.
+/// Subclass of MoyaProvider that returns SignalProducer<MoyaResponse, NSError> instances when requests are made. Much better than using completion closures.
 public class ReactiveCocoaMoyaProvider<T where T: MoyaTarget>: MoyaProvider<T> {
     /// Current requests that have not completed or errored yet.
     /// Note: Do not access this directly. It is public only for unit-testing purposes (sigh).
@@ -39,7 +39,6 @@ public class ReactiveCocoaMoyaProvider<T where T: MoyaTarget>: MoyaProvider<T> {
             
             disposable.addDisposable {
                 if let weakSelf = self {
-                    println("\n\n\nDisposing request\n\n\n")
                     objc_sync_enter(weakSelf)
                     // Clear the inflight request
                     weakSelf.inflightRequests[endpoint] = nil
@@ -133,6 +132,7 @@ public func mapJSON() -> Signal<MoyaResponse, NSError> -> Signal<AnyObject, NSEr
     }
 }
 
+/// Maps a JSON object to an NSArray
 public func mapJSONArray() -> Signal<AnyObject, NSError> -> Signal<NSArray, NSError> {
     return tryMap { (json: AnyObject) in
         if let json = json as? NSArray {
@@ -143,6 +143,7 @@ public func mapJSONArray() -> Signal<AnyObject, NSError> -> Signal<NSArray, NSEr
     }
 }
 
+/// Maps a JSON object to an NSDictionary
 public func mapJSONDictionary() -> Signal<AnyObject, NSError> -> Signal<NSDictionary, NSError> {
     return tryMap { (json: AnyObject) in
         if let json = json as? NSDictionary {

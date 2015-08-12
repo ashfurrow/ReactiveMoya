@@ -13,6 +13,10 @@
 		7C0BD4961B7ADFF4002E5F64 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C0BD4921B7ADFF4002E5F64 /* ReactiveCocoa.framework */; };
 		7C0BD4971B7ADFF4002E5F64 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C0BD4931B7ADFF4002E5F64 /* Result.framework */; };
 		7C0BD4991B7AE026002E5F64 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0BD4981B7AE026002E5F64 /* Github.swift */; };
+		7C0BD4AE1B7AE66C002E5F64 /* Alamofire.framework in Copy Dependencies */ = {isa = PBXBuildFile; fileRef = 7C0BD4901B7ADFF4002E5F64 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C0BD4AF1B7AE66C002E5F64 /* Box.framework in Copy Dependencies */ = {isa = PBXBuildFile; fileRef = 7C0BD4911B7ADFF4002E5F64 /* Box.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C0BD4B01B7AE66C002E5F64 /* ReactiveCocoa.framework in Copy Dependencies */ = {isa = PBXBuildFile; fileRef = 7C0BD4921B7ADFF4002E5F64 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C0BD4B11B7AE66C002E5F64 /* Result.framework in Copy Dependencies */ = {isa = PBXBuildFile; fileRef = 7C0BD4931B7ADFF4002E5F64 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C938CA11B77A19A0045BDD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C938CA01B77A19A0045BDD3 /* AppDelegate.swift */; };
 		7C938CA31B77A19A0045BDD3 /* ReactiveMoyaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C938CA21B77A19A0045BDD3 /* ReactiveMoyaViewController.swift */; };
 		7C938CA61B77A19A0045BDD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C938CA41B77A19A0045BDD3 /* Main.storyboard */; };
@@ -52,6 +56,23 @@
 			remoteInfo = ReactiveMoyaExample;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7C0BD4AD1B7AE659002E5F64 /* Copy Dependencies */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7C0BD4AE1B7AE66C002E5F64 /* Alamofire.framework in Copy Dependencies */,
+				7C0BD4AF1B7AE66C002E5F64 /* Box.framework in Copy Dependencies */,
+				7C0BD4B01B7AE66C002E5F64 /* ReactiveCocoa.framework in Copy Dependencies */,
+				7C0BD4B11B7AE66C002E5F64 /* Result.framework in Copy Dependencies */,
+			);
+			name = "Copy Dependencies";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7C0BD4841B7ADFB2002E5F64 /* ReactiveMoya.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveMoya.xcodeproj; path = ../../ReactiveMoya.xcodeproj; sourceTree = "<group>"; };
@@ -186,6 +207,7 @@
 				7C938C971B77A19A0045BDD3 /* Sources */,
 				7C938C981B77A19A0045BDD3 /* Frameworks */,
 				7C938C991B77A19A0045BDD3 /* Resources */,
+				7C0BD4AD1B7AE659002E5F64 /* Copy Dependencies */,
 			);
 			buildRules = (
 			);

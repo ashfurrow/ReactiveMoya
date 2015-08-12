@@ -32,6 +32,10 @@ In addition to the option of using signals instead of callback blocks, there are
 also a series of signal operators that will attempt to map the data received 
 from the network response into either an image, some JSON, or a string, with 
 `mapImage()`, `mapJSON()`, `mapJSONArray()`, `mapJSONDictionary()`, and `mapString()`, respectively.
+If the mapping is unsuccessful, you'll get an error on the producer or signal. You also get handy methods for
+filtering out certain status codes. This means that you can place your code for 
+handling API errors like 400's in the same places as code for handling invalid 
+responses. 
 
 The example above becomes:
 ```swift
@@ -55,11 +59,6 @@ provider.request(.UserProfile("ashfurrow"))
     },
     next: { (image: UIImage) in
         // Do something with the image
-    }
+    })
   
 ```
-
-If the mapping is unsuccessful, you'll get an error on the producer or signal. You also get handy methods for
-filtering out certain status codes. This means that you can place your code for 
-handling API errors like 400's in the same places as code for handling invalid 
-responses. 

@@ -1,6 +1,15 @@
 # ReactiveMoya
 A simpler way to use Moya+ReactiveCocoa.
 
+Installation
+------------------------
+####Carthage
+Add this line to your `Cartfile`:
+```
+github "Moya/ReactiveMoya"
+```
+and run `carthage update`
+
 Usage
 ------------------------
 

@@ -14,7 +14,7 @@
 		7C0BD4971B7ADFF4002E5F64 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C0BD4931B7ADFF4002E5F64 /* Result.framework */; };
 		7C0BD4991B7AE026002E5F64 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0BD4981B7AE026002E5F64 /* Github.swift */; };
 		7C938CA11B77A19A0045BDD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C938CA01B77A19A0045BDD3 /* AppDelegate.swift */; };
-		7C938CA31B77A19A0045BDD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C938CA21B77A19A0045BDD3 /* ViewController.swift */; };
+		7C938CA31B77A19A0045BDD3 /* ReactiveMoyaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C938CA21B77A19A0045BDD3 /* ReactiveMoyaViewController.swift */; };
 		7C938CA61B77A19A0045BDD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C938CA41B77A19A0045BDD3 /* Main.storyboard */; };
 		7C938CA81B77A19A0045BDD3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C938CA71B77A19A0045BDD3 /* Images.xcassets */; };
 		7C938CAB1B77A19A0045BDD3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C938CA91B77A19A0045BDD3 /* LaunchScreen.xib */; };
@@ -63,7 +63,7 @@
 		7C938C9B1B77A19A0045BDD3 /* ReactiveMoyaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactiveMoyaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C938C9F1B77A19A0045BDD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C938CA01B77A19A0045BDD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7C938CA21B77A19A0045BDD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7C938CA21B77A19A0045BDD3 /* ReactiveMoyaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveMoyaViewController.swift; sourceTree = "<group>"; };
 		7C938CA51B77A19A0045BDD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C938CA71B77A19A0045BDD3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7C938CAA1B77A19A0045BDD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				7C938CA01B77A19A0045BDD3 /* AppDelegate.swift */,
-				7C938CA21B77A19A0045BDD3 /* ViewController.swift */,
+				7C938CA21B77A19A0045BDD3 /* ReactiveMoyaViewController.swift */,
 				7C0BD4981B7AE026002E5F64 /* Github.swift */,
 				7C938CCA1B77A1F90045BDD3 /* UIViewControllerExtensions.swift */,
 				7C938CA41B77A19A0045BDD3 /* Main.storyboard */,
@@ -300,7 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C938CA31B77A19A0045BDD3 /* ViewController.swift in Sources */,
+				7C938CA31B77A19A0045BDD3 /* ReactiveMoyaViewController.swift in Sources */,
 				7C938CCB1B77A1F90045BDD3 /* UIViewControllerExtensions.swift in Sources */,
 				7C0BD4991B7AE026002E5F64 /* Github.swift in Sources */,
 				7C938CA11B77A19A0045BDD3 /* AppDelegate.swift in Sources */,

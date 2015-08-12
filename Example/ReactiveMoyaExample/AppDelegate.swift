@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  ReactiveMoyaExample
-//
-//  Created by Justin Makaila on 8/9/15.
-//  Copyright (c) 2015 Moya. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

@@ -1,11 +1,3 @@
-//
-//  ReactiveMoyaError.swift
-//  Moya
-//
-//  Created by Justin Makaila on 6/28/15.
-//  Copyright © 2015 Moya. All rights reserved.
-//
-
 import Foundation
 
 public let ReactiveMoyaErrorDomain = "ReactiveMoya"

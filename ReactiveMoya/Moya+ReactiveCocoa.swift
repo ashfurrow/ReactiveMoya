@@ -7,7 +7,7 @@ public class ReactiveCocoaMoyaProvider<T where T: MoyaTarget>: MoyaProvider<T> {
     /// Current requests that have not completed or errored yet.
     /// Note: Do not access this directly. It is public only for unit-testing purposes (sigh).
     public var inflightRequests = Dictionary<Endpoint<T>, SignalProducer<MoyaResponse, NSError>>()
-
+    
     /// Initializes a reactive provider.
     override public init(endpointClosure: MoyaEndpointsClosure = MoyaProvider.DefaultEndpointMapping, endpointResolver: MoyaEndpointResolution = MoyaProvider.DefaultEnpointResolution, stubBehavior: MoyaStubbedBehavior = MoyaProvider.NoStubbingBehavior, networkActivityClosure: Moya.NetworkActivityClosure? = nil) {
         super.init(endpointClosure: endpointClosure, endpointResolver: endpointResolver, stubBehavior: stubBehavior, networkActivityClosure: networkActivityClosure)
@@ -79,7 +79,7 @@ public extension ReactiveCocoaMoyaProvider {
     public func requestImage(token: T) -> SignalProducer<UIImage, NSError> {
         return request(token) |> mapImage()
     }
-
+    
     public func requestString(token: T) -> SignalProducer<String, NSError> {
         return request(token) |> mapString()
     }
@@ -87,80 +87,92 @@ public extension ReactiveCocoaMoyaProvider {
 
 /// MoyaResponse free functions
 
-public func filterStatusCode(range: ClosedInterval<Int>) -> Signal<MoyaResponse, NSError> -> Signal<MoyaResponse, NSError>  {
-    return tryMap { (response: MoyaResponse) in
-        if range.contains(response.statusCode) {
-            return Result.success(response)
-        } else {
-            return Result.failure(ReactiveMoyaError.StatusCode(response).toError())
-        }
+public func filterStatusCode(range: ClosedInterval<Int>) -> SignalProducer<MoyaResponse, NSError> -> SignalProducer<MoyaResponse, NSError>  {
+    return { producer in
+        return producer |> flatMap(.Latest, { response in
+            if range.contains(response.statusCode) {
+                return SignalProducer(value: response)
+            } else {
+                return SignalProducer(error: ReactiveMoyaError.StatusCode(response).toError())
+            }
+        })
     }
 }
 
-public func filterStatusCode(code: Int) -> Signal<MoyaResponse, NSError> -> Signal<MoyaResponse, NSError> {
+public func filterStatusCode(code: Int) -> SignalProducer<MoyaResponse, NSError> -> SignalProducer<MoyaResponse, NSError> {
     return filterStatusCode(code...code)
 }
 
-public func filterSuccessfulStatusCodes() -> Signal<MoyaResponse, NSError> -> Signal<MoyaResponse, NSError> {
+public func filterSuccessfulStatusCodes() -> SignalProducer<MoyaResponse, NSError> -> SignalProducer<MoyaResponse, NSError> {
     return filterStatusCode(200...299)
 }
 
-public func filterSuccessfulAndRedirectCodes() -> Signal<MoyaResponse, NSError> -> Signal<MoyaResponse, NSError> {
+public func filterSuccessfulAndRedirectCodes() -> SignalProducer<MoyaResponse, NSError> -> SignalProducer<MoyaResponse, NSError> {
     return filterStatusCode(200...399)
 }
 
 /// Maps the `MoyaResponse` to a `UIImage`
-public func mapImage() -> Signal<MoyaResponse, NSError> -> Signal<UIImage, NSError> {
-    return tryMap { (response: MoyaResponse) -> Result<UIImage, NSError> in
-        if let image = UIImage(data: response.data) {
-            return Result.success(image)
-        } else {
-            return Result.failure(ReactiveMoyaError.ImageMapping(response).toError())
-        }
+public func mapImage() -> SignalProducer<MoyaResponse, NSError> -> SignalProducer<UIImage, NSError> {
+    return { producer in
+        return producer |> flatMap(.Latest, { response in
+            if let image = UIImage(data: response.data) {
+                return SignalProducer(value: image)
+            } else {
+                return SignalProducer(error: ReactiveMoyaError.ImageMapping(response).toError())
+            }
+        })
     }
 }
 
 /// Maps the `MoyaResponse` to JSON
-public func mapJSON() -> Signal<MoyaResponse, NSError> -> Signal<AnyObject, NSError> {
-    return tryMap { (response: MoyaResponse) -> Result<AnyObject, NSError> in
-        var error: NSError?
-        if let json: AnyObject = NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments, error: &error) {
-            return Result.success(json)
-        } else {
-            return Result.failure(ReactiveMoyaError.JSONMapping(response).toError())
-        }
+public func mapJSON() -> SignalProducer<MoyaResponse, NSError> -> SignalProducer<AnyObject, NSError> {
+    return { producer in
+        return producer |> flatMap(.Latest, { response in
+            var error: NSError?
+            if let json: AnyObject = NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments, error: &error) {
+                return SignalProducer(value: json)
+            } else {
+                return SignalProducer(error: ReactiveMoyaError.JSONMapping(response).toError())
+            }
+        })
     }
 }
 
 /// Maps a JSON object to an NSArray
-public func mapJSONArray() -> Signal<AnyObject, NSError> -> Signal<NSArray, NSError> {
-    return tryMap { (json: AnyObject) in
-        if let json = json as? NSArray {
-            return Result.success(json)
-        } else {
-            return Result.failure(ReactiveMoyaError.JSONMapping(json).toError())
-        }
+public func mapJSONArray() -> SignalProducer<AnyObject, NSError> -> SignalProducer<NSArray, NSError> {
+    return { producer in
+        return producer |> flatMap(.Latest, { json in
+            if let json = json as? NSArray {
+                return SignalProducer(value: json)
+            } else {
+                return SignalProducer(error: ReactiveMoyaError.JSONMapping(json).toError())
+            }
+        })
     }
 }
 
 /// Maps a JSON object to an NSDictionary
-public func mapJSONDictionary() -> Signal<AnyObject, NSError> -> Signal<NSDictionary, NSError> {
-    return tryMap { (json: AnyObject) in
-        if let json = json as? NSDictionary {
-            return Result.success(json)
-        } else {
-            return Result.failure(ReactiveMoyaError.JSONMapping(json).toError())
-        }
+public func mapJSONDictionary() -> SignalProducer<AnyObject, NSError> -> SignalProducer<NSDictionary, NSError> {
+    return { producer in
+        return producer |> flatMap(.Latest, { json in
+            if let json = json as? NSDictionary {
+                return SignalProducer(value: json)
+            } else {
+                return SignalProducer(error: ReactiveMoyaError.JSONMapping(json).toError())
+            }
+        })
     }
 }
 
 /// Maps the `MoyaResponse` to a String
-public func mapString() -> Signal<MoyaResponse, NSError> -> Signal<String, NSError> {
-    return tryMap { (response: MoyaResponse) -> Result<String, NSError> in
-        if let string: String =  NSString(data: response.data, encoding: NSUTF8StringEncoding) as? String {
-            return Result.success(string)
-        } else {
-            return Result.failure(ReactiveMoyaError.StringMapping(response).toError())
-        }
+public func mapString() -> SignalProducer<MoyaResponse, NSError> -> SignalProducer<String, NSError> {
+    return { producer in
+        return producer |> flatMap(.Latest, { response in
+            if let string =  NSString(data: response.data, encoding: NSUTF8StringEncoding) as? String {
+                return SignalProducer(value: string)
+            } else {
+                return SignalProducer(error: ReactiveMoyaError.StringMapping(response).toError())
+            }
+        })
     }
 }

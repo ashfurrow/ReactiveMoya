@@ -6,7 +6,7 @@ import Result
 public class ReactiveCocoaMoyaProvider<T where T: MoyaTarget>: MoyaProvider<T> {
     /// Current requests that have not completed or errored yet.
     /// Note: Do not access this directly. It is public only for unit-testing purposes (sigh).
-    public var inflightRequests = Dictionary<Endpoint<T>, SignalProducer<MoyaResponse, NSError>>()
+    public var inflightRequests = Dictionary<Endpoint<T>, Signal<MoyaResponse, NSError>>()
     
     /// Initializes a reactive provider.
     override public init(endpointClosure: MoyaEndpointsClosure = MoyaProvider.DefaultEndpointMapping, endpointResolver: MoyaEndpointResolution = MoyaProvider.DefaultEnpointResolution, stubBehavior: MoyaStubbedBehavior = MoyaProvider.NoStubbingBehavior, networkActivityClosure: Moya.NetworkActivityClosure? = nil) {
@@ -16,45 +16,54 @@ public class ReactiveCocoaMoyaProvider<T where T: MoyaTarget>: MoyaProvider<T> {
     public func request(token: T) -> SignalProducer<MoyaResponse, NSError> {
         let endpoint = self.endpoint(token)
         
-        if let existingProducer = inflightRequests[endpoint] {
-            return existingProducer
+        if let existingSignal = inflightRequests[endpoint] {
+            /// returns a new producer which forwards all events of the already existing request signal
+            return SignalProducer { sink, disposable in
+                /// connect all events of the existing signal to the observer of this signal producer
+                existingSignal.observe(sink)
+            }
         }
-        
-        let producer: SignalProducer<MoyaResponse, NSError> = SignalProducer { [weak self] sink, disposable in
-            let cancellableToken = self?.request(token) { data, statusCode, response, error in
-                if let error = error {
-                    if let statusCode = statusCode {
-                        sendError(sink, NSError(domain: error.domain, code: statusCode, userInfo: error.userInfo))
-                    } else {
-                        sendError(sink, error)
+        else {
+            /// returns a new producer which starts a new producer which invokes the requests. The created signal of the inner producer is saved for inflight request
+            return SignalProducer { [weak self] sink, _ in
+                let producer: SignalProducer<MoyaResponse, NSError> = SignalProducer { [weak self] sink, disposable in
+                    let cancellableToken = self?.request(token) { data, statusCode, response, error in
+                        if let error = error {
+                            if let statusCode = statusCode {
+                                sendError(sink, NSError(domain: error.domain, code: statusCode, userInfo: error.userInfo))
+                            } else {
+                                sendError(sink, error)
+                            }
+                        } else {
+                            if let data = data {
+                                sendNext(sink, MoyaResponse(statusCode: statusCode!, data: data, response: response))
+                            }
+                        }
+                        sendCompleted(sink)
                     }
-                } else {
-                    if let data = data {
-                        sendNext(sink, MoyaResponse(statusCode: statusCode!, data: data, response: response))
+                    
+                    disposable.addDisposable {
+                        if let weakSelf = self {
+                            objc_sync_enter(weakSelf)
+                            // Clear the inflight request
+                            weakSelf.inflightRequests[endpoint] = nil
+                            objc_sync_exit(weakSelf)
+                            // Cancel the request
+                            cancellableToken?.cancel()
+                        }
                     }
                 }
                 
-                sendCompleted(sink)
-            }
-            
-            disposable.addDisposable {
-                if let weakSelf = self {
-                    objc_sync_enter(weakSelf)
-                    // Clear the inflight request
-                    weakSelf.inflightRequests[endpoint] = nil
-                    objc_sync_exit(weakSelf)
-                    
-                    // Cancel the request
-                    cancellableToken?.cancel()
+                /// starts the inner signal producer and store the created signal.
+                producer |> startWithSignal { [weak self] signal, _ in
+                    objc_sync_enter(self)
+                    self?.inflightRequests[endpoint] = signal
+                    objc_sync_exit(self)
+                    /// connect all events of the signal to the observer of this signal producer
+                    signal.observe(sink)
                 }
             }
         }
-        
-        objc_sync_enter(self)
-        self.inflightRequests[endpoint] = producer
-        objc_sync_exit(self)
-        
-        return producer
     }
     
     public func request(token: T) -> RACSignal {
